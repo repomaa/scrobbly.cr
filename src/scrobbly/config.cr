@@ -1,12 +1,17 @@
 require "yaml"
 
 {% begin %}
-  {% backends = (env("BACKENDS") || "mpd,pipe").split(",") %}
+  {% backend_whitelist = (env("WITH_BACKENDS") || "mpd,pipe").split(",") %}
+  {% backend_blacklist = (env("WITHOUT_BACKENDS") || "").split(",") %}
+  {% backends = backend_whitelist.reject { |backend| backend_blacklist.includes?(backend) } %}
+
   {% for backend in backends %}
     require "./backends/{{backend.id}}"
   {% end %}
 
-  {% frontends = (env("FRONTENDS") || "lastfm,log").split(",") %}
+  {% frontend_whitelist = (env("WITH_BACKENDS") || "lastfm,log").split(",") %}
+  {% frontend_blacklist = (env("WITHOUT_BACKENDS") || "").split(",") %}
+  {% frontends = frontend_whitelist.reject { |frontend| frontend_blacklist.includes?(frontend) } %}
   {% for frontend in frontends %}
     require "./frontends/{{frontend.id}}"
   {% end %}
