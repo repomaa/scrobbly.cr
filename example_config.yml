@@ -1,0 +1,11 @@
+---
+backends:
+  pipe: enable
+  # mpd:
+  #   host: localhost
+  #   port: 6600
+  #   password: foobar
+frontends:
+  log:
+    # path: /tmp/scrobbly.log
+  # lastfm:

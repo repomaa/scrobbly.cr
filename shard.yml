@@ -1,0 +1,13 @@
+name: scrobbly
+version: 0.1.0
+
+authors:
+  - Joakim Reinert <mail@jreinert.com>
+
+targets:
+  scrobbly:
+    main: src/scrobbly.cr
+
+crystal: 0.24.1
+
+license: MIT
